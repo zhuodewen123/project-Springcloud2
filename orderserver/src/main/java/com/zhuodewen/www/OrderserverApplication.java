@@ -4,8 +4,8 @@ import com.zhuodewen.www.service.RabbitMqService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @Import(CommonApplication.class)
 @PropertySource("classpath:application-order.properties")	//配置文件需改名,因为和引入的common模块冲突了
-@EnableEurekaClient											//Eureka的消费端(SpringCloud消费者)
+@EnableDiscoveryClient                                  	//Zookeeper的消费端(SpringCloud生产者)
 @MapperScan("com.zhuodewen.www.mapper") 					//mapper扫描器
 @EnableFeignClients											//开启feign(调用)
 @EnableHystrix                                              //熔断器

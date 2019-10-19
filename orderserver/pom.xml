@@ -151,11 +151,11 @@
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 
-		<!--springcloud生产者-->
-		<dependency>
+		<!--springcloud客户端(不能和zookeeper依赖一起使用)-->
+		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!-- Ribbon依赖 -->
 		<dependency>
@@ -176,16 +176,41 @@
 		</dependency>
 
 		<!--rabbitMQ(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-		</dependency>
-
-		<!--kafka(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
 		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
 		</dependency>-->
+
+		<!--kafka(spring-cloud-集成)(MQ和Kafka的依赖不能共存)-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
+		</dependency>
+
+		<!--集成Zookeeper开始-->
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>-->
+
+		<!-- Zookeeper 依赖的健康检查的依赖 -->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>-->
+
+		<!-- Zookeeper在SpringCloud中的依赖 -->
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+		</dependency>-->
+
+		<!--Zookeeper在SpringCloud中的config依赖-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zookeeper-config</artifactId>
+		</dependency>
+
 
 	</dependencies>
 
