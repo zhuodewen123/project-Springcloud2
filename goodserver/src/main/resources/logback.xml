@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+	<property name="LOG_HOME" value="/usr/local/logs" />
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 日志输出编码Encoding报错,注释掉-->
+		<!--<Encoding>UTF-8</Encoding>-->
+		<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %-5level %X{invokeNo} %logger %msg%n</pattern>
+			<!--日志字符编码格式-->
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 按照每天生成日志文件 (debug) -->
+	<appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 日志输出编码Encoding报错,注释掉-->
+		<!--<Encoding>UTF-8</Encoding>-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--文件位置及名称-->
+			<FileNamePattern>D:/MyProject_tests/logs/springcloud/goodserver/debug-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<!--<FileNamePattern>logs/debug-%d{yyyy-MM-dd}-%i.log</FileNamePattern>-->
+			<!--最大存留天数-->
+			<maxHistory>7</maxHistory>
+			<!-- 按时间回滚的同时，按文件大小来回滚 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!--最大容量-->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<!-- 指定输出的格式,必须指定，否则不会往文件输出内容 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+			<!--日志字符编码格式-->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 只打印debbug日志 -->
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 按照每天生成日志文件 (error) -->
+	<appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 日志输出编码Encoding报错,注释掉-->
+		<!--<Encoding>UTF-8</Encoding>-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>D:/MyProject_tests/logs/springcloud/goodserver/error-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<!--<FileNamePattern>logs/debug-%d{yyyy-MM-dd}-%i.log</FileNamePattern>-->
+			<maxHistory>7</maxHistory>
+			<!-- 按时间回滚的同时，按文件大小来回滚 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+			<!--日志字符编码格式-->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 只打印错误日志 -->
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 按照每天生成日志文件 (info) -->
+	<appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 日志输出编码Encoding报错,注释掉-->
+		<!--<Encoding>UTF-8</Encoding>-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>D:/MyProject_tests/logs/springcloud/goodserver/info-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<!--<FileNamePattern>logs/debug-%d{yyyy-MM-dd}-%i.log</FileNamePattern>-->
+			<maxHistory>7</maxHistory>
+			<!-- 按时间回滚的同时，按文件大小来回滚 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<!-- 指定输出的格式,必须指定，否则不会往文件输出内容 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+			<!--日志字符编码格式-->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 只打印信息日志 -->
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- 按照每天生成日志文件 (WARN) -->
+	<appender name="warnAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 日志输出编码Encoding报错,注释掉-->
+		<!--<Encoding>UTF-8</Encoding>-->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>D:/MyProject_tests/logs/springcloud/goodserver/warn-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+			<!--<FileNamePattern>logs/debug-%d{yyyy-MM-dd}-%i.log</FileNamePattern>-->
+			<maxHistory>7</maxHistory>
+			<!-- 按时间回滚的同时，按文件大小来回滚 -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+			<!-- 指定输出的格式,必须指定，否则不会往文件输出内容 -->
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+			<!--日志字符编码格式-->
+			<charset>UTF-8</charset>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<!-- 只打印警告日志 -->
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!--<appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+		<smtpHost>smtp.163.com</smtpHost>
+		<smtpPort>25</smtpPort>
+		<username>testlog@163.com</username>
+		<password>testlogpasswd</password>
+		<SSL>false</SSL>
+		<to>123456@qq.com</to>
+		<to>123456@sina.com</to>
+		<from>testlog@163.com</from>
+		<subject>【Error】: %logger</subject>
+		<layout class="ch.qos.logback.classic.html.HTMLLayout" >
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</layout>
+	</appender>-->
+
+	<!-- 日志输出级别 -->
+	<root level="INFO">
+		<!--<appender-ref ref="EMAIL" />-->
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="errorAppender" />
+		<appender-ref ref="infoAppender" />
+		<appender-ref ref="warnAppender" />
+		<appender-ref ref="debugAppender" />
+	</root>
+
+
+</configuration>

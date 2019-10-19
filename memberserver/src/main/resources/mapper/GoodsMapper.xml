@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhuodewen.www.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.zhuodewen.www.domain.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="good_name" jdbcType="VARCHAR" property="goodName" />
+    <result column="good_code" jdbcType="VARCHAR" property="goodCode" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="discount" jdbcType="DECIMAL" property="discount" />
+    <result column="contant" jdbcType="VARCHAR" property="context" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhuodewen.www.domain.Goods" useGeneratedKeys="true">
+    insert into goods (good_name, good_code, title, 
+      price, discount, contant, 
+      url, pic_url)
+    values (#{goodName,jdbcType=VARCHAR}, #{goodCode,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{discount,jdbcType=DECIMAL}, #{contant,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zhuodewen.www.domain.Goods">
+    update goods
+    set good_name = #{goodName,jdbcType=VARCHAR},
+      good_code = #{goodCode,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      discount = #{discount,jdbcType=DECIMAL},
+      contant = #{contant,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, good_name, good_code, title, price, discount, contant, url, pic_url
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, good_name, good_code, title, price, discount, contant, url, pic_url
+    from goods
+  </select>
+</mapper>
