@@ -14,6 +14,15 @@
 	<name>springcloud</name>
 	<description>SpringCloud project for Spring Boot</description>
 
+	<!--定义子模块-->
+	<modules>
+		<module>common</module>
+		<module>goodserver</module>
+		<module>memberserver</module>
+		<module>orderserver</module>
+		<module>website</module>
+	</modules>
+
 	<!--统一编码和JDK-->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
