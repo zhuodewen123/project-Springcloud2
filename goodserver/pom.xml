@@ -58,6 +58,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.16.22</version>
 		</dependency>
 
 		<!--阿里巴巴fastjson-->

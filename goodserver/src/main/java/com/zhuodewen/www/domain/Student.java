@@ -5,6 +5,30 @@ import java.io.Serializable;
 
 @ToString
 public class Student implements Serializable{
+
+    //无参构造器
+    public Student(){
+
+    }
+
+    //======================================================================
+    //带参构造器
+    public Student(int age,Long id){
+        this.age=age;
+        this.id=id;
+    }
+
+    //带参构造器
+    public Student(int age){
+        this.age=age;
+    }
+
+    public synchronized void decrement() {
+        age--;
+    }
+    //=======================================================================
+
+
     private Long id;
 
     private String name;

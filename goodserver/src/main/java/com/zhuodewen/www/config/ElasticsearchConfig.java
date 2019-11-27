@@ -25,7 +25,6 @@ public class ElasticsearchConfig {
     private static int maxConnectNum = 100;                 // 最大连接数
     private static int maxConnectPerRoute = 100;            // 最大路由连接数
 
-
     private static RestClientBuilder builder;
     private static RestHighLevelClient restHighLevelClient; //RestHighLevelClient对象,单例模式
 
