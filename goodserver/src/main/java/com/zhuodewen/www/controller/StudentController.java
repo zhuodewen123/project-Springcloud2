@@ -3,9 +3,9 @@ package com.zhuodewen.www.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zhuodewen.www.config.ElasticsearchUtil;
-import com.zhuodewen.www.config.MyThread;
-import com.zhuodewen.www.config.MyThread2;
-import com.zhuodewen.www.config.MyThread3;
+import com.zhuodewen.www.thread.MyThread;
+import com.zhuodewen.www.thread.MyThread2;
+import com.zhuodewen.www.thread.MyThread3;
 import com.zhuodewen.www.domain.Student;
 import com.zhuodewen.www.util.JSONResult;
 import org.elasticsearch.action.get.GetResponse;
@@ -13,7 +13,6 @@ import org.elasticsearch.search.SearchHit;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -184,7 +183,7 @@ public class StudentController {
         JSONResult js=new JSONResult();
         try {
             //创建线程池
-            ExecutorService executorService= Executors.newFixedThreadPool(10);         //最多可运行线程数
+            ExecutorService executorService= Executors.newFixedThreadPool(10);         //最多可运行线程数(固定线程数)
             MyThread2 myThread2 = new MyThread2(student);	                                    //创建自定义线程类的对象(业务放在线程内)
             Thread thread = new Thread(myThread2);
 
@@ -213,7 +212,7 @@ public class StudentController {
         try {
             //启动线程(线程run()内含有业务逻辑)
             Callable<GetResponse> callable = new MyThread3(student,index); 	//多态创建Callable实例
-            GetResponse getResponse=callable.call();                        //启动线程并获取返回值
+            GetResponse getResponse=callable.call();                        //call()启动线程并获取返回值
 
             js.setMsg("SUCCESS");
             //js.setResult(JSON.toJSONString(getResponse.getSource()));     //getSource()方法获取数据--json字符串

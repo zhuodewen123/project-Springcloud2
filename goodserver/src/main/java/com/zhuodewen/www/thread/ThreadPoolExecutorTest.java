@@ -1,4 +1,4 @@
-package com.zhuodewen.www.config;
+package com.zhuodewen.www.thread;
 
 import com.zhuodewen.www.domain.Student;
 import java.util.concurrent.ExecutorService;

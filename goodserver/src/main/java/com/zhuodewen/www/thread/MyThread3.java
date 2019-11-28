@@ -1,5 +1,6 @@
-package com.zhuodewen.www.config;
+package com.zhuodewen.www.thread;
 
+import com.zhuodewen.www.config.ElasticsearchUtil;
 import com.zhuodewen.www.domain.Student;
 import org.elasticsearch.action.get.GetResponse;
 
@@ -28,7 +29,7 @@ public class MyThread3 implements Callable<GetResponse> {
         synchronized (this) {
             try {
                 // 业务:获取Elasticsearch记录(主要业务)
-                getResponse=ElasticsearchUtil.get(index, index, student.getId());
+                getResponse= ElasticsearchUtil.get(index, index, student.getId());
             } catch (IOException e) {
                 e.printStackTrace();
             }

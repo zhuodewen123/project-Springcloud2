@@ -1,5 +1,6 @@
-package com.zhuodewen.www.config;
+package com.zhuodewen.www.thread;
 
+import com.zhuodewen.www.config.ElasticsearchUtil;
 import com.zhuodewen.www.domain.Student;
 import java.io.IOException;
 
