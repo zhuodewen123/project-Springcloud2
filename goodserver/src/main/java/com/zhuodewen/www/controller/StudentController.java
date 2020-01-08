@@ -152,10 +152,8 @@ public class StudentController {
 
     //Elasticsearch--批量新增/批量删除/批量更新
 
-
-
     /**
-     * 增加ES数据
+     * 增加一个ES数据
      * 测试多线程处理高并发业务(一"次"业务操作,使用一个线程)
      */
     @RequestMapping("addEsByThread")
